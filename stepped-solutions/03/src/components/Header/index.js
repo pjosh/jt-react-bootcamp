@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { HOME_PATH } from 'router/paths';
 import logo from './images/rickandmorty-logo.svg';
@@ -14,4 +14,4 @@ function Header({ small = false }) {
   );
 }
 
-export default Header;
+export default memo(Header);
