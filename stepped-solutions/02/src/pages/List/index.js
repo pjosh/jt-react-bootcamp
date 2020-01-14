@@ -2,7 +2,6 @@ import React from 'react';
 import { getCharacter } from 'rickmortyapi';
 import { Waypoint } from 'react-waypoint';
 import CharacterList from 'components/CharacterList';
-import styles from './styles.module.scss';
 
 class List extends React.Component {
   constructor(props) {
@@ -59,7 +58,7 @@ class List extends React.Component {
     const { characters } = this.state;
 
     return (
-      <div className={styles.container}>
+      <div>
         {characters.length && <CharacterList characters={characters} />}
         <Waypoint onEnter={this.onWaypointEnter} />
       </div>

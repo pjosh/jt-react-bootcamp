@@ -1,0 +1,35 @@
+$imageWidth: 200px;
+$translateValue: 125px;
+
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: transform 500ms ease-out;
+  transform: translateX($imageWidth - $translateValue);
+  animation: moveContainerFromRightToLeft 500ms ease-out 2s 1 forwards;
+  z-index: 2;
+
+  .content {
+    position: relative;
+    transition: transform 500ms ease-out;
+    transform: translateX($translateValue);
+
+    &:hover {
+      transform: translateX(10px);
+    }
+  }
+
+  .image {
+    width: $imageWidth;
+  }
+}
+
+@keyframes moveContainerFromRightToLeft {
+  from {
+    transform: translateX($imageWidth - $translateValue);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
