@@ -1,0 +1,50 @@
+extends:
+  - airbnb
+  - plugin:jest/recommended
+  - plugin:react/recommended
+  - prettier
+  - prettier/react
+env:
+  browser: true
+  jest: true
+plugins:
+  - import
+  - jest
+  - prettier
+parser: babel-eslint
+rules:
+  arrow-parens:
+    - error
+    - as-needed
+  class-methods-use-this: off
+  comma-dangle:
+    - error
+    - never
+  import/extensions:
+    - error
+    - always
+    -
+      js: never
+      jsx: never
+      less: never
+  jsx-a11y/label-has-for: off
+  no-return-assign:
+    - error
+    - except-parens
+  prettier/prettier:
+    - warn
+    -
+      singleQuote: true
+      printWidth: 100
+  react/destructuring-assignment: off
+  react/jsx-filename-extension:
+    - 1
+    - extensions:
+      - .jsx
+      - .test.js
+  react/require-default-props: warn
+  react/forbid-prop-types: off
+settings:
+  import/resolver:
+    webpack:
+      config: webpack.config.js
