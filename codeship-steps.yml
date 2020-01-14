@@ -1,0 +1,16 @@
+- name: 'Test'
+  type: parallel
+  exclude: ^(production|rollback)$
+  steps:
+    - name: 'Javascript Tests'
+      service: design-system-webpack
+      command: -c 'yarn test --runInBand --ci'
+    - name: 'JS Linting'
+      service: design-system-webpack
+      command: -c 'yarn eslint'
+    - name: 'CSS Linting'
+      service: design-system-webpack
+      command: -c 'yarn stylelint'
+    - name: 'Storybook Generation'
+      service: design-system-webpack
+      command: -c 'yarn storybook-publish'
