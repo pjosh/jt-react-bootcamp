@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import 'DesignSystem/styles/organisms.less';
 import Button from 'DesignSystemComponents/atoms/Button';
 import imageDefaultRoute from 'DesignSystem/images/no-chats.png';
 

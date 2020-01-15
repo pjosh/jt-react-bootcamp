@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestCharacters } from 'store/characters/actions';
+import { requestAllCharacters } from 'store/characters/actions';
 import {
   getGenderChartData,
   getLocationChartData,
@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      requestCharacters
+      requestAllCharacters
     },
     dispatch
   );

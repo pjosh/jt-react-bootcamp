@@ -1,55 +1,54 @@
 import React from 'react';
 import Header from 'components/Header';
 import PieChart from 'components/PieChart';
+import BlankSlate from 'DesignSystemComponents/organisms/BlankSlate';
 import CharacterAdder from './CharacterAdder';
+import rickMortyPickleLemonImage from './images/rick-morty-pickle-lemon.png';
 import styles from './styles.module.scss';
 
 class Chart extends React.Component {
-  // componentDidMount() {
-  //   this.requestAllCharacters();
-  // }
+  requestAllCharacters = () => {
+    const { requestAllCharacters } = this.props;
 
-  // componentDidUpdate(prevProps) {
-  //   const { page: prevPage } = prevProps;
-  //   const { page } = this.props;
-
-  //   if (!prevPage && page !== prevPage) {
-  //     this.requestAllCharacters();
-  //   }
-  // }
-
-  // shouldComponentUpdate(nextProps) {
-  //   const { page, pageLimit } = nextProps;
-  //   console.log(nextProps);
-  //   console.log('shouldComponentUpdate');
-  //   return page === pageLimit;
-  // }
-
-  // async requestFirstCharacters() {
-  //   const { requestCharacters } = this.props;
-
-  //   await requestCharacters(1);
-  // }
-
-  // async requestAllCharacters() {
-  //   const { requestCharacters, page, pageLimit } = this.props;
-
-  //   for (let i = page + 1; i <= pageLimit; i++) {
-  //     await requestCharacters(i);
-  //   }
-  // }
+    requestAllCharacters();
+  };
 
   render() {
-    const { genderChartData, locationChartData, statusChartData, speciesChartData } = this.props;
+    const {
+      genderChartData,
+      locationChartData,
+      statusChartData,
+      speciesChartData,
+      page,
+      pageLimit
+    } = this.props;
+    const disableAdder = !!page && page === pageLimit;
+    const haveData =
+      genderChartData.length &&
+      locationChartData.length &&
+      statusChartData.length &&
+      speciesChartData.length;
 
     return (
       <div className={styles.container}>
         <Header small />
-        <CharacterAdder />
-        <PieChart data={genderChartData} title="Gender" />
-        <PieChart data={locationChartData} title="Location" />
-        <PieChart data={statusChartData} title="Status" />
-        <PieChart data={speciesChartData} title="Species" />
+        <CharacterAdder disabled={disableAdder} onClick={this.requestAllCharacters} />
+
+        {haveData ? (
+          <>
+            <PieChart data={genderChartData} title="Gender" />
+            <PieChart data={locationChartData} title="Location" />
+            <PieChart data={statusChartData} title="Status" />
+            <PieChart data={speciesChartData} title="Species" />
+          </>
+        ) : (
+          <BlankSlate
+            buttonLabel="Load data!"
+            onSelect={this.requestAllCharacters}
+            title="No data :'("
+            imageRoute={rickMortyPickleLemonImage}
+          />
+        )}
       </div>
     );
   }
