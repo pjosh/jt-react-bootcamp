@@ -1,0 +1,768 @@
+//
+// --- Table rows ---
+//
+.ds-mol-title-table-bounds { // Table header
+  &:extend(.ds-internal-table-row-base all);
+  &:extend(.ds-text-caption-semibold);
+
+  background-color: #FBFBFB;
+  color: @dark_alpha60;
+
+  & > div,
+  th {
+    padding-right: 20/@px;
+    text-transform: uppercase;
+    text-align: right;
+  }
+}
+
+.ds-internal-table-row-base {
+  display: table-row;
+  height: 52/@px;
+  line-height: 52/@px;
+  width: 100%;
+
+  td {
+    padding: 8/@px 20/@px;
+  }
+
+  td,
+  & > div {
+    display: table-cell;
+  }
+
+  th:first-child,
+  td:first-child,
+  & > div:first-child {
+    border-right: 1px solid @dark_alpha40;
+    padding-left: 20/@px;
+    text-align: left;
+  }
+}
+
+.ds-mol-table-row-single { // Table normal row
+  &:extend(.ds-internal-table-row-base all);
+  &:extend(.ds-text-body-big-regular);
+
+  border-bottom: 1px solid @black_alpha10;
+  height: 62/@px;
+  line-height: 62/@px;
+  text-align: right;
+}
+
+//
+// --- Input groups ---
+//  Markup example:
+//    <div class="ds-mol-input-field">
+//      <label for="name">Name <span class="optional">(optional)</span></label>
+//      <input placeholder="Name" class="ds-atom-text-input-normal" type="text" name="name">
+//      <span class="error"></span>
+//    </div>
+//
+.ds-mol-input-field {
+  margin-bottom: 20/@px;
+
+  label {
+    &:extend(.ds-text-body-base-semibold);
+  }
+
+  input,
+  select {
+    margin-top: 5/@px;
+  }
+
+  .error,
+  .field_with_errors span { // custom and rails way
+    &:extend(.ds-text-footnote-semibold);
+
+    color: @red;
+    float: right;
+    margin-top: 2/@px;
+  }
+
+  .optional {
+    &:extend(.ds-text-footnote-regular);
+
+    color: @dark_alpha60;
+  }
+
+  .Select-control {
+    overflow: inherit; //avoids displacement of content when closed unselected also in tags selects
+  }
+}
+
+.ds-mol-input-multiselect {
+  &:extend(.ds-mol-input-field all);
+}
+
+//
+// --- Popovers ---
+//  Markup example:
+//    <div class="ds-mol-popover top-arrow">
+//      <div class="ds-atom-dialog-cell">
+//        <img src="https://placeimg.com/24/24" class="ds-bubble-drop-down-cell-image">
+//        Option 1
+//      </div>
+//      <div class="ds-atom-dialog-cell selected">
+//        Option 2
+//      </div>
+//      <div class="ds-atom-dialog-cell">
+//        Option 3
+//      </div>
+//    </div>
+//
+
+.ds-mol-dropdown,
+.ds-mol-popover {
+  .box-shadow(0 1/@px 4/@px @dark_alpha20);
+  .border-radius(3/@px);
+
+  border: 1/@px solid @dark_alpha10;
+  position: relative;
+  display: inline-block;
+  padding: 4/@px 0;
+  background-color: @white;
+  z-index: 10;
+
+  &.top-arrow,
+  &.bottom-arrow {
+    &:after,
+    &:before {
+      border: solid transparent;
+      content: "";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: transparent;
+    }
+
+    &:after {
+      border-width: 6/@px;
+      margin-left: -6/@px;
+    }
+
+    &:before {
+      border-width: 7/@px;
+      margin-left: -7/@px;
+    }
+  }
+
+  &.top-arrow {
+    &:after {
+      right: 16/@px;
+      top: -11/@px;
+      border-bottom-color: @white;
+    }
+
+    &:before {
+      right: 15/@px;
+      top: -14/@px;
+      border-bottom-color: @dark_alpha10;
+    }
+  }
+
+  &.bottom-arrow {
+    &:after {
+      right: 16/@px;
+      bottom: -11/@px;
+      border-top-color: @white;
+    }
+
+    &:before {
+      right: 15/@px;
+      bottom: -14/@px;
+      border-top-color: @dark_alpha10;
+    }
+  }
+
+  &.left-direction {
+    right: 0;
+    left: auto;
+  }
+
+  &.right-direction {
+    left: 0;
+    right: auto;
+  }
+
+  .ds-atom-drop-down-cell {
+    padding: 0;
+  }
+}
+
+//
+// --- Title section disclosure (aka. collapsable panel) ---
+//  Markup example:
+//  <div class="ds-mol-section-disclosure">
+//    <div class="ds-mol-title-section-disclosure">
+//      <div class="ds-mol-title-section-disclosure-icon">Icon</div>
+//      <div class="ds-mol-title-section-disclosure-text ">Section title</div>
+//    </div>
+//    <div class="ds-mol-section-disclosure-content">
+//      Content
+//    </div>
+//  </div>
+//
+.ds-mol-section-disclosure {
+  & > .ds-mol-title-section-disclosure {
+    height: 48/@px;
+    line-height: 48/@px;
+    width: 100%;
+    padding-left: 45/@px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+
+    &:before {
+      border: 7/@px solid transparent;
+      content: "";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: transparent;
+      left: 20/@px;
+      top: 17/@px;
+      border-left-color: @dark;
+    }
+
+    & > .ds-mol-title-section-disclosure-icon {
+      color: @primary_blue;
+      width: 16/@px;
+      height: 16/@px;
+      margin-right: 15/@px;
+    }
+
+    & > .ds-mol-title-section-disclosure-text {
+      .box-shadow(inset 0 -1/@px 0 0 @dark_alpha10);
+
+      width: 100%;
+      height: 48/@px;
+      display: flex;
+      align-items: center;
+
+      & > .ds-mol-title-section-disclosure-text-title {
+        &:extend(.ds-text-body-big-semibold);
+      }
+
+      & > .ds-mol-title-section-disclosure-text-subtitle {
+        &:extend(.ds-text-body-big-semibold);
+
+        color: @dark_alpha40;
+        margin-left: 10/@px;
+      }
+
+      & > .ds-mol-title-section-disclosure-text-badge {
+        position: absolute;
+        right: 10/@px;
+        top: 15/@px;
+      }
+    }
+  }
+
+  &.opened > .ds-mol-title-section-disclosure:before {
+    top: 21/@px;
+    left: 15/@px;
+    border-left-color: transparent;
+    border-top-color: @dark;
+  }
+
+  & > .ds-mol-section-disclosure-content {
+    margin-left: 75/@px;
+    margin-top: 10/@px;
+    margin-right: 20/@px;
+  }
+
+  &.tabed-content {
+    margin-left: 60/@px;
+  }
+
+  &.closed > .ds-mol-section-disclosure-content {
+    display: none;
+  }
+
+  &.disabled {
+    & > .ds-mol-title-section-disclosure {
+      & > .ds-mol-title-section-disclosure-text {
+        color: @dark_alpha20;
+      }
+
+      & > .ds-mol-title-section-disclosure-icon use {
+        color: @dark_alpha20;
+      }
+
+      &:before {
+        left: 20/@px;
+        top: 17/@px;
+        border-left-color: @dark_alpha20;
+        border-top-color: transparent;
+      }
+    }
+  }
+
+  &.tabed {
+    .ds-mol-title-section-disclosure {
+      padding-left: 28px;
+
+      &:before {
+        left: 0;
+      }
+    }
+  }
+}
+
+.ds-mol-section-disclosure.second-level {
+  & > .ds-mol-title-section-disclosure {
+    height: 16/@px;
+    padding-left: 20/@px;
+
+    &:before {
+      left: 4/@px;
+      top: 2/@px;
+    }
+
+    & > .ds-mol-title-section-disclosure-text {
+      .box-shadow(none);
+
+      height: 16/@px;
+
+      & > .ds-mol-title-section-disclosure-text-title {
+        &:extend(.ds-text-body-base-semibold);
+      }
+    }
+  }
+
+  &.opened > .ds-mol-title-section-disclosure:before {
+    left: 0;
+    top: 4/@px;
+  }
+
+  & > .ds-mol-section-disclosure-content {
+    margin-left: 20/@px;
+  }
+}
+
+//
+// --- Popup selector ---
+// The default mode is "up" (with an arrow under the element)
+// It allows a "down" class to show the arrow over the popup
+//
+// Markup example:
+//  <div class="ds-mol-popup-selector down">
+//    <div>
+//      ...content...
+//    </div>
+//  </div>
+//
+.ds-mol-popup-selector {
+  position: absolute;
+  z-index: 2;
+  top: -50/@px;
+  left: -34/@px;
+
+  &.down {
+    top: 23/@px;
+    left: -34/@px;
+  }
+
+  // TODO: Fix warning by giving the div a class and removing '& >'. Affects farming:
+  // https://github.com/jobandtalent/farming/blob/master/app/javascript/packs/components/RankingIcon.js#L36
+  // https://github.com/jobandtalent/farming/blob/master/app/javascript/packs/components/requirements/ValidityRequirement.js#L27
+  & > div {
+    .box-shadow(0 4/@px 15/@px 0 @dark_alpha20);
+    .border-radius(25/@px);
+
+    background-color: @white;
+    padding: 13/@px 15/@px;
+    display: flex;
+    align-items: center;
+  }
+
+  &.down > div {
+    .box-shadow(0 -4/@px 15/@px 0 @dark_alpha20);
+  }
+
+  // Arrow
+  &:after {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: 10/@px;
+    bottom: -18/@px;
+    left: 31/@px;
+    border-top-color: @white;
+  }
+
+  &.down:after {
+    bottom: auto;
+    top: -18/@px;
+    left: 31/@px;
+    border-bottom-color: @white;
+    border-top-color: transparent;
+  }
+}
+
+//
+// --- Progress bar with extra info ---
+//
+// Markup example:
+//  <div class="ds-mol-progress-info">
+//    <div class="progress-bar-extra-info">
+//      <div class="progress-info-title">
+//        <span class="progress-info-name">Documentation</span>
+//        <span class="progress-info-figures">5/12</span>
+//      </div>
+//      <span class="progress-info-extra-text">
+//        Not registered
+//      </span
+//    </div>
+//    <div class="ds-atom-progress-bar">
+//      <div class="ds-atom-progress-bar-segment"></div>
+//    </div>
+//  </div>
+//
+.ds-mol-progress-info {
+  display: flex;
+  flex-direction: column;
+  width: 250/@px;
+
+  .progress-bar-extra-info {
+    display: flex;
+    justify-content: space-between;
+
+    .progress-info-name {
+      &:extend(.ds-text-footnote-regular);
+
+      color: @dark;
+      margin-right: 5/@px;
+    }
+
+    .progress-info-figures {
+      &:extend(.ds-text-body-base-semibold);
+
+      font-size: 12/@px;
+    }
+
+    .progress-info-extra-text {
+      &:extend(.ds-text-body-base-regular);
+
+      color: @red;
+      font-size: 10/@px;
+    }
+  }
+
+  &.empty-level {
+    .progress-info-figures {
+      color: @dark;
+    }
+
+    .ds-atom-progress-bar-segment {
+      width: 0;
+    }
+  }
+
+  &.basic-level {
+    .progress-info-figures {
+      color: @yellow;
+    }
+
+    .ds-atom-progress-bar-segment {
+      width: 25%;
+      background-image: linear-gradient(to right, @yellow, @red);
+    }
+  }
+
+  &.medium-level {
+    .progress-info-figures {
+      color: #66DF84;
+    }
+
+    .ds-atom-progress-bar-segment {
+      width: 50%;
+      background-image: linear-gradient(to right, #66DF84, @green);
+    }
+  }
+
+  &.advanced-level {
+    .progress-info-figures {
+      color: #34C5FF;
+    }
+
+    .ds-atom-progress-bar-segment {
+      width: 75%;
+      background-image: linear-gradient(to right, #34C5FF, @primary_blue);
+    }
+  }
+
+  &.pro-level {
+    .progress-info-figures {
+      color: #D868E2;
+    }
+
+    .ds-atom-progress-bar-segment {
+      width: 100%;
+      background-image: linear-gradient(to right, #D868E2, @purple);
+    }
+  }
+}
+
+//
+// --- Option pickers ---
+//
+
+.ds-mol-option-picker {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  .ds-mol-dropdown {
+    position: absolute;
+    top: 35/@px;
+    z-index: 10;
+  }
+}
+
+.ds-mol-option-picker-trigger {
+  .textSemibold();
+  .border-radius(3/@px);
+
+  display: inline-block;
+  position: relative;
+  line-height: 35/@px;
+  font-size: 12/@px;
+  color: @dark_alpha80;
+  padding: 0 30/@px 0 10/@px;
+  border: 1/@px solid @black_alpha10;
+  cursor: pointer;
+  background-color: @white;
+
+  &:hover {
+    border-color: @black_alpha20;
+  }
+
+  &:focus {
+    border-color: @primary_blue;
+    outline: none;
+  }
+
+  &.no-arrow {
+    padding-right: 10/@px;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  &.empty {
+    height: 24/@px;
+    width: 24/@px;
+    padding: 0;
+
+    &:after {
+      right: 7/@px;
+      top: 10/@px;
+    }
+  }
+
+  &.disabled {
+    .opacity(40);
+
+    cursor: not-allowed;
+    pointer-events: none;
+    filter: grayscale(100%);
+  }
+}
+
+.ds-mol-option-picker-closed {
+  &:after {
+    .triangle-down(5px, @dark_alpha40);
+
+    position: absolute;
+    right: 10/@px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:hover,
+  &:focus {
+    &:after {
+      .triangle-down(5px, @dark_alpha80);
+    }
+  }
+}
+
+.ds-mol-option-picker-open {
+  &:after {
+    .triangle-up(5px, @dark_alpha40);
+
+    position: absolute;
+    right: 10/@px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:hover,
+  &:focus {
+    &:after {
+      .triangle-up(5px, @dark_alpha80);
+    }
+  }
+}
+
+.ds-mol-option-picker-group {
+  .clearfix;
+
+  display: inline-block;
+  border: 1/@px solid @black_alpha10;
+  .border-radius(3/@px);
+
+  .ds-mol-option-picker-trigger {
+    .border-radius(0);
+
+    float: left;
+    border: none;
+    border-right: 1/@px solid @black_alpha10;
+    position: relative;
+
+    &:hover {
+      &:before {
+        content: "";
+        border: 1/@px solid @primary_blue;
+        position: absolute;
+        left: -1/@px;
+        top: -1/@px;
+        right: -1/@px;
+        bottom: -1/@px;
+      }
+    }
+
+    &:first-child:hover:before {
+      border-top-left-radius: 3/@px;
+      border-bottom-left-radius: 3/@px;
+    }
+
+    &:last-child {
+      border-right: none;
+
+      &:hover:before {
+        border-top-right-radius: 3/@px;
+        border-bottom-right-radius: 3/@px;
+      }
+    }
+  }
+}
+
+//
+// --- Month picker ---
+//
+
+.ds-mol-month-picker-header {
+  .ds-arrow {
+    background-color: transparent;
+    border: none;
+    line-height: 17px;
+    margin: 15px;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+
+    .arrow {
+      fill: @dark_alpha40;
+      vertical-align: middle;
+      width: 23px;
+      height: 17px;
+      color: @dark_alpha40;
+
+      &:hover {
+        color: @primary_blue_alpha80;
+      }
+    }
+  }
+
+  .ds-arrow-left {
+    .ds-arrow;
+
+    color: @dark_alpha40;
+    cursor: pointer;
+    float: left;
+  }
+
+  .ds-arrow-right {
+    .ds-arrow;
+
+    color: @dark_alpha40;
+    cursor: pointer;
+    float: right;
+    transform: rotate(180deg);
+  }
+}
+
+.ds-mol-month-picker-container {
+  background: @white;
+  border: solid 1px @dark_alpha20;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 265px;
+  z-index: 20;
+  left: 1px;
+  top: 38px;
+}
+
+.ds-mol-month-picker {
+  box-sizing: border-box;
+  display: block;
+  overflow: auto;
+  position: relative;
+  white-space: normal;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.ds-mol-month-picker-month {
+  .ds-text-body-base-regular;
+
+  cursor: pointer;
+  display: inline-block;
+  transition: all 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  outline: none;
+  padding: 15px 0;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 33.3%;
+
+  &:hover {
+    background-color: @primary_blue_alpha08;
+  }
+
+  &.selected {
+    background-color: @primary_blue;
+    color: @white;
+  }
+}
+
+.ds-mol-month-picker-year {
+  .ds-text-body-base-semibold;
+
+  display: inline-block;
+  left: 50%;
+  line-height: 17px;
+  margin-bottom: 0.5rem;
+  margin-top: 15px;
+  position: absolute;
+  transform: translateX(-50%);
+}

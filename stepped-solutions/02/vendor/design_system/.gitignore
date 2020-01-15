@@ -1,0 +1,9 @@
+.DS_Store
+/coverage
+/node_modules
+/storybook-dist
+/site
+*.aes
+ci.*
+!ci.args.encrypted
+!ci.env.encrypted

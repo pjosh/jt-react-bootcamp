@@ -1,0 +1,31 @@
+# TODO: separate per environment, in production we don't want test folder.
+# Ignore version control files:
+.git/
+.gitignore
+
+# Ignores generated files:
+/storybook-publish
+/coverage
+/yarn-error.log
+
+# Ignore docker and environment files:
+*Dockerfile
+Dockerfile*
+*.env
+.dockerignore
+
+# Ignoring nodejs modules.
+node_modules/
+
+# Ignore log files:
+log/*.log
+
+# Ignore temporary files:
+tmp/
+
+# Ignore OS artifacts:
+**/.DS_Store
+
+# Ignore CI files:
+codeship*
+ci.*
