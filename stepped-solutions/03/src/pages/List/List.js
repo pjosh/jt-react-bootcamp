@@ -38,7 +38,7 @@ class List extends React.Component {
     return (
       <div className={styles.container}>
         <Header small />
-        {characters.length && <CharacterList characters={characters} />}
+        {!!characters.length && <CharacterList characters={characters} />}
         <Waypoint onEnter={this.onWaypointEnter} />
       </div>
     );

@@ -5,4 +5,9 @@ import { Provider } from 'react-redux';
 import store from 'store';
 import 'styles/index.scss';
 
-ReactDOM.render(<Provider store={store}>{Router}</Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <Router />
+  </Provider>,
+  document.getElementById('root')
+);

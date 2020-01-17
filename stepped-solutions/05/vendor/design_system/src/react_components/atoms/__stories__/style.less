@@ -1,0 +1,53 @@
+.showcase-table {
+  border-spacing: 0.5em 0;
+  width: 100%;
+}
+
+button.custom-class { // stylelint-disable-line selector-no-qualifying-type
+  background-color: #9ACD32;
+  border: 1px solid transparent;
+  font-style: oblique;
+  font-weight: 100;
+  letter-spacing: 0.1rem;
+  height: auto;
+
+  &:hover {
+    background-color: #008000;
+  }
+}
+
+.grid-container {
+  color: rgba(35, 40, 46, 1);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+  grid-gap: 1.2rem;
+  width: 100%;
+
+  .icon-cell {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .icon-title {
+    font-size: 0.7rem;
+    word-break: break-all;
+  }
+
+  .icon {
+    color: #2F4F4F;
+    height: 1.5rem;
+    padding: 0.5rem;
+    width: 1.5rem;
+  }
+}
+
+.css-glamorous-table--3qhq7f {
+  margin-top: 1em;
+  width: 100%;
+
+  td,
+  th {
+    padding: 0.5em;
+  }
+}
