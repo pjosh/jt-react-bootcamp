@@ -7,7 +7,7 @@ function CharacterAdder({ disabled = false, onClick }) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <img src={image} className={styles.image} alt="image" />
+        <img src={image} className={styles.image} alt="slug" />
         <Button className={styles.button} disabled={disabled} onSelect={onClick} tiny>
           Load all data!
         </Button>
