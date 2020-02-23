@@ -1,0 +1,76 @@
+@import '~styles/colors';
+$borderRadius: 10px;
+
+.container {
+  width: 100%;
+  border-radius: $borderRadius;
+
+  .image {
+    height: 230px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+  }
+
+  .data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 160px;
+    padding: 20px;
+    background-color: $color1;
+    text-align: center;
+
+    .species {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $color4;
+    }
+
+    .name {
+      margin-top: 5px;
+      font-size: 26px;
+      font-weight: 900;
+      color: $color2;
+    }
+
+    .description {
+      margin-top: 20px;
+      font-size: 14px;
+      color: $color5;
+    }
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    background-color: $color4;
+    color: $color1;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+
+    .statsItem {
+      width: 33.3%;
+      padding: 27px 0;
+      text-align: center;
+
+      &:not(:last-child) {
+        border-right: 1px solid darken($color4, 10);
+      }
+    }
+
+    .statsValue {
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .statsTitle {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+  }
+}

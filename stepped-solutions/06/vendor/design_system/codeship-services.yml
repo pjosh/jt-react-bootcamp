@@ -1,0 +1,51 @@
+design-system-webpack:
+  build:
+    context: .
+    dockerfile: Dockerfile
+    encrypted_args_file: ci.args.encrypted
+  entrypoint: "/bin/sh"
+  volumes:
+    - ./storybook-dist:/design_system/storybook-dist
+  cached: true
+
+dockercfg-production-generator:
+  image: codeship/aws-ecr-dockercfg-generator
+  add_docker: true
+  encrypted_env_file: ci.env.encrypted
+  environment:
+    - AWS_STS_ROLE=ci_from_ops
+    - AWS_STS_ACCOUNT=471410223680
+
+dockercfg-staging-generator:
+  image: codeship/aws-ecr-dockercfg-generator
+  add_docker: true
+  encrypted_env_file: ci.env.encrypted
+  environment:
+    - AWS_STS_ROLE=ci_from_ops
+    - AWS_STS_ACCOUNT=215866266283
+
+awsdeployment-staging:
+  image: 215866266283.dkr.ecr.eu-west-1.amazonaws.com/ci-stuff
+  dockercfg_service: dockercfg-staging-generator
+  encrypted_env_file: ci.env.encrypted
+  volumes:
+    - ./storybook-dist:/storybook-dist
+  environment:
+    - AWS_DEFAULT_REGION=eu-west-1
+    - CUSTOM_PROJECT_NAME=design_system
+    - AWS_STS_ROLE=ci_from_ops
+    - AWS_STS_ACCOUNT=215866266283
+    - AWS_ROLE_ARN=arn:aws:iam::215866266283:role/ci_from_ops
+
+awsdeployment-production:
+  image: 471410223680.dkr.ecr.eu-west-1.amazonaws.com/ci-stuff
+  dockercfg_service: dockercfg-production-generator
+  encrypted_env_file: ci.env.encrypted
+  volumes:
+    - ./storybook-dist:/storybook-dist
+  environment:
+    - AWS_DEFAULT_REGION=eu-west-1
+    - CUSTOM_PROJECT_NAME=design_system
+    - AWS_STS_ROLE=ci_from_ops
+    - AWS_STS_ACCOUNT=471410223680
+    - AWS_ROLE_ARN=arn:aws:iam::471410223680:role/ci_from_ops

@@ -1,0 +1,42 @@
+$imageWidth: 200px;
+$translateValue: 125px;
+
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: transform 500ms ease-out;
+  transform: translateX($imageWidth - $translateValue);
+  animation: moveContainerFromRightToLeft 3s ease-out 2s 1 forwards;
+  z-index: 2;
+
+  .content {
+    position: relative;
+    transition: transform 200ms ease-out;
+    transform: translateX($translateValue);
+
+    .image {
+      width: $imageWidth;
+    }
+
+    .button {
+      position: absolute;
+      top: 53px;
+      right: 4px;
+      transform: rotateZ(-50deg);
+    }
+
+    &:hover {
+      transform: translateX(10px);
+    }
+  }
+}
+
+@keyframes moveContainerFromRightToLeft {
+  from {
+    transform: translateX($imageWidth - $translateValue);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
